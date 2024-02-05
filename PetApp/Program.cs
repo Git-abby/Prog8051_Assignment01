@@ -6,28 +6,28 @@ namespace PetApp
     {
         static void Main(string[] args)
         {
-            //For Getting pet type from the user
-            Console.WriteLine("-----------------------------");
-            Console.WriteLine("Please choose a type of pet: ");
-            Console.WriteLine("1. Cat \n2. Dog\n3. Rabbit \n");
-            Console.Write("User Input :");
-            int petType = Convert.ToInt32(Console.ReadLine());
-            //***********************************************
-
-            //This loop run untill user enter valid input
-            //if user enter invalid input this will run
+        
+            int petType = 0;
+            //*******************************************************
             while (petType <= 0 || petType >= 4)
             {
-                Console.WriteLine("\n-----------------------------");
-                Console.WriteLine("\n[ALERT] - You have chose invalid input!");
                 Console.WriteLine("Please choose a type of pet: ");
+                Console.WriteLine("\n-----------------------------");
                 Console.WriteLine("1. Cat \n2. Dog\n3. Rabbit \n");
-                Console.Write("User Input :");
-                int petTypeNew = Convert.ToInt32(Console.ReadLine());
-                petType = petTypeNew;
-            }
-            //*******************************************************
+                Console.Write("User Input: ");
 
+                // Attempt to convert user input to an integer
+                if (!int.TryParse(Console.ReadLine(), out petType))
+                {
+                    Console.WriteLine("[ALERT] - Invalid input! Please enter a valid integer.");
+                    // Optionally, you can handle this by taking appropriate action.
+                    // For simplicity, in this example, the loop will continue, and the user will be prompted again.
+                }
+                else if (petType <= 0 || petType >= 4)
+                {
+                    Console.WriteLine("[ALERT] - You have chosen an invalid input!");
+                }
+            }
 
             //Showing the message to user which pet he/she selected
             if (petType == 1)
@@ -170,7 +170,6 @@ namespace PetApp
                 {
                     //this will end the loop
                     exit = 0;
-
                 }
                 else
                 {
